@@ -7,7 +7,7 @@
     "dev": "standard && browser-sync start --config bs-config.json"
   },
   "dependencies": {
-    "vega-lite": "*"
+    "vega-lite": "^3.0.0-rc6"
   },
   "devDependencies": {
     "standard": "*",
