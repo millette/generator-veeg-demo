@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "autosize": "pad",
   "padding": 5,
   "width": 200,
@@ -8,7 +8,7 @@
     {
       "name": "source_0",
       "url": "data/data.json",
-      "format": {"type": "json", "parse": {"b": "number"}},
+      "format": {"type": "json"},
       "transform": [
         {
           "type": "aggregate",
@@ -21,7 +21,7 @@
     }
   ],
   "signals": [
-    {"name": "y_step", "value": 21},
+    {"name": "y_step", "value": 20},
     {
       "name": "height",
       "update": "bandspace(domain('y').length, 0.1, 0.05) * y_step"
@@ -35,15 +35,9 @@
       "from": {"data": "source_0"},
       "encode": {
         "update": {
-          "fill": [
-            {
-              "test": "datum[\"average_b\"] === null || isNaN(datum[\"average_b\"])",
-              "value": null
-            },
-            {"value": "#4c78a8"}
-          ],
+          "fill": {"value": "#4c78a8"},
           "tooltip": {
-            "signal": "{\"Average of b\": format(datum[\"average_b\"], \"\"), \"a\": ''+datum[\"a\"]}"
+            "signal": "{\"a\": ''+datum[\"a\"], \"Average of b\": format(datum[\"average_b\"], \"\")}"
           },
           "x": {"scale": "x", "field": "average_b"},
           "x2": {"scale": "x", "value": 0},
@@ -96,6 +90,5 @@
       "zindex": 0
     },
     {"scale": "y", "orient": "left", "grid": false, "title": "a", "zindex": 1}
-  ],
-  "config": {"axisY": {"minExtent": 30}}
+  ]
 }
